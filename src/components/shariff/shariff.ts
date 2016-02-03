@@ -7,42 +7,30 @@ import {Component} from 'angular2/core';
 })
 
 
+// Alternative mit templateUrl
 // @Component({
 //  selector: 'shariff-widget',
 //  styleUrls: ['src/components/shariff/shariff.complete.css'],
-//  templateUrl:'<div class="shariff" data-services="[&quot;twitter&quot;]"></div>'
+//  templateUrl:'src/components/shariff/shariff.html'
 // })
 
 export class Shariff {
-    //value: string;
-    //url: string
-
-    //value = "twitter";
-    //url = url;
-    // Create all Links in <tag></tag>-Element
-
-
-    // Import von javascript
+    // Import von javascript-File laut Googlesuche...
+    // ##
     // constructor(){
     //     System.import('path/to/your/file').then(refToLoadedScript => {
     //             refToLoadedScript.someFunction();
     //         }
     //    );
-
-    // my-app.js
-    //var Shariff = require('shariff');
-    //var $ = require('jquery');
-    //var buttonsContainer = $('.some-selector');
-    //new Shariff(buttonsContainer, {
-    //orientation: 'vertical'
-    //});
-
+    // ##
 
 
     onNGInit(){
         // Some Code here....
+
+        // Neues Shariff-Obj anlegen
         // var bcont = $('shariff');
         // var Shariff = require('shariff');
-        // new Shariff(bcont, {});
+        // new Shariff(bcont, {services: 'twitter'});
     }
 }
