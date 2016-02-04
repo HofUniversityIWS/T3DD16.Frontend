@@ -36,7 +36,8 @@ import {States} from './model/states';
     'assets/styles/forms.css',
     'assets/styles/card.css',
     'assets/styles/modal.css',
-    'assets/styles/sponsors.css'
+    'assets/styles/sponsors.css',
+    'assets/external/shariff/shariff.complete.css'
   ],
   templateUrl: 'app/app.html',
   encapsulation: ViewEncapsulation.None

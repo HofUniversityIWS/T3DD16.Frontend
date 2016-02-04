@@ -6,7 +6,7 @@ declare var Shariff: Function;
     selector: 'shariff',
     styleUrls: ['assets/external/shariff/shariff.complete.css'],
     template: `
-        <div class="shariff" [attr.data-services]="_shariffServices"></div>
+        <div class="shariff" [attr.data-services]="_shariffServices" [attr.data-orientation]="_shariffOrientation"></div>
     `,
     inputs: ['orientation', 'services']
 })
@@ -25,8 +25,10 @@ export class ShariffComponent implements OnInit, OnChanges
     @Input()
     services: String;
 
+
     protected _shariffServices: String = '';
     protected _shariffElement: HTMLElement;
+    protected _shariffOrientation: String = '';
 
     // Import von javascript-File laut Googlesuche...
     // ##
@@ -43,27 +45,35 @@ export class ShariffComponent implements OnInit, OnChanges
 
     getServicesJson(): String
     {
-        console.log('json');
-        return JSON.stringify(this.services.split(',').map(Function.prototype.call, String.prototype.trim));
+        return JSON.stringify(this.services+",");
+        // +"," => Eine Schleife läuft 1x zu wenig durch, somit wird jeder Eintrag angezeigt.
+        //return JSON.stringify(this.services.split(',').map(Function.prototype.call, String.prototype.trim));
+    }
+
+    getOrientationJson(): String
+    {
+        return JSON.stringify(this.orientation);
     }
 
     ngOnInit()
     {
     }
+
     ngOnChanges(changes: {[key: string]: SimpleChange})
     {
+        var orientation = this.getOrientationJson().replace("\"","").replace("\"","");
+        // Anführungszeichen müssen entfernt werden, sonst greift Shariff-Funct. nicht.
+
+        var services = this.getServicesJson().replace("\"","").split(",");
+        // Anführungszeichen müssen entfernt werden, sonst greift Shariff-Funct. nicht.
+
+        //console.log("Services: "+this.getServicesJson());
+        //console.log("Orient.: "+this.getOrientationJson());
         this._shariffElement = this._elementRef.nativeElement.querySelector('.shariff');
         if (changes['services']) {
-            this._shariffServices = JSON.stringify(this.services.split(',').map(Function.prototype.call, String.prototype.trim));
-            var x = new Shariff(this._shariffElement);
-            console.log(x);
+            var x = new Shariff(this._shariffElement, {orientation, services});
+            //console.log("Shariff-Element:");
+            //console.log(x);
         }
-
-        // Some Code here....
-
-        // Neues Shariff-Obj anlegen
-        // var bcont = $('shariff');
-        // var Shariff = require('shariff');
-        // new Shariff(bcont, {services: 'twitter'});
     }
 }

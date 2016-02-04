@@ -5,10 +5,14 @@ import {Title} from 'angular2/platform/browser';
 import {SessionService} from '../../providers/sessionService';
 import {Session} from '../../model/session';
 import {MarkdownPipe} from '../../pipes/markdown';
+import {ShariffComponent} from '../../components/shariff/shariff.component';
 
 @Component({
   selector: 'session-detail',
   providers: [SessionService],
+  directives: [
+    ShariffComponent
+  ],
   pipes: [MarkdownPipe],
   host: {
     '(body:keydown)': 'documentKeypress($event)',
