@@ -10,6 +10,7 @@ import {OffcanvasComponent} from './components/navigation/offcanvas';
 import {FooterComponent} from './components/footer/footer';
 import {LoginComponent} from './components/login/login';
 import {LoadingComponent} from './components/loading/loading';
+import {ShariffComponent} from './components/shariff/shariff.component';
 
 import {AppStates} from './providers/appStates';
 import {States} from './model/states';
@@ -21,7 +22,8 @@ import {States} from './model/states';
     ROUTER_DIRECTIVES, COMMON_DIRECTIVES,
     NavigationComponent, OffcanvasComponent,
     LoginComponent, FooterComponent,
-    LoadingComponent
+    LoadingComponent,
+    ShariffComponent
   ],
   pipes: [],
   host: {},

@@ -5,7 +5,6 @@ import {Title} from 'angular2/platform/browser';
 import {SessionService} from '../../providers/sessionService';
 import {Session} from '../../model/session';
 import {MarkdownPipe} from '../../pipes/markdown';
-import {Shariff} from '../shariff/shariff';
 
 @Component({
   selector: 'session-detail',
