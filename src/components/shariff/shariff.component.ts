@@ -60,10 +60,7 @@ export class ShariffComponent implements OnInit, OnChanges
 
     getThemeJson(): String
     {
-        if(this.theme.length > 0)
-            return JSON.stringify(this.theme);
-        else
-            return JSON.stringify("standard");
+        return JSON.stringify(this.theme);
     }
 
     ngOnInit()
