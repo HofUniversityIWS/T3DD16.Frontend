@@ -6,9 +6,9 @@ declare var Shariff: Function;
     selector: 'shariff',
     styleUrls: ['assets/external/shariff/shariff.complete.css'],
     template: `
-        <div class="shariff" [attr.data-services]="_shariffServices" [attr.data-orientation]="_shariffOrientation"></div>
+        <div class="shariff" [attr.data-services]="_shariffServices" [attr.data-orientation]="_shariffOrientation" [attr.data-theme]="_shariffTheme"></div>
     `,
-    inputs: ['orientation', 'services']
+    inputs: ['orientation', 'services', 'theme']
 })
 
 // Alternative mit templateUrl
@@ -21,14 +21,17 @@ declare var Shariff: Function;
 export class ShariffComponent implements OnInit, OnChanges
 {
     @Input()
-    orientation: String;
+    orientation: String = "horzontal";
     @Input()
-    services: String;
+    services: String = "facebook,twitter,xing,googleplus";
+    @Input()
+    theme: String = "standard";
 
 
     protected _shariffServices: String = '';
     protected _shariffElement: HTMLElement;
     protected _shariffOrientation: String = '';
+    protected _shariffTheme: String = '';
 
     // Import von javascript-File laut Googlesuche...
     // ##
@@ -55,6 +58,14 @@ export class ShariffComponent implements OnInit, OnChanges
         return JSON.stringify(this.orientation);
     }
 
+    getThemeJson(): String
+    {
+        if(this.theme.length > 0)
+            return JSON.stringify(this.theme);
+        else
+            return JSON.stringify("standard");
+    }
+
     ngOnInit()
     {
     }
@@ -67,11 +78,14 @@ export class ShariffComponent implements OnInit, OnChanges
         var services = this.getServicesJson().replace("\"","").split(",");
         // Anführungszeichen müssen entfernt werden, sonst greift Shariff-Funct. nicht.
 
+        var theme = this.getThemeJson().replace("\"","").replace("\"","");
+        // Anführungszeichen müssen entfernt werden, sonst greift Shariff-Funct. nicht.
+
         //console.log("Services: "+this.getServicesJson());
         //console.log("Orient.: "+this.getOrientationJson());
         this._shariffElement = this._elementRef.nativeElement.querySelector('.shariff');
         if (changes['services']) {
-            var x = new Shariff(this._shariffElement, {orientation, services});
+            var x = new Shariff(this._shariffElement, {orientation, services,theme});
             //console.log("Shariff-Element:");
             //console.log(x);
         }
